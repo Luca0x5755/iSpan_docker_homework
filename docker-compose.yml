@@ -1,0 +1,15 @@
+version: "1.0.0"
+
+services:
+  flask:
+    build: .
+    container_name: flask
+    restart: always
+    networks:
+      - backend
+    ports:
+      - "5000:5000"
+
+networks:
+  backend:
+    driver: bridge
