@@ -1,14 +1,36 @@
 version: "1.0.0"
 
 services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+
   flask:
     build: .
     container_name: flask
     restart: always
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: rootpass
+      DB_NAME: flaskdb
+    depends_on:
+      - mysql
     networks:
       - backend
     ports:
       - "5000:5000"
+
+volumes:
+  db_data:
 
 networks:
   backend:
