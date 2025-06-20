@@ -21,7 +21,7 @@ services:
       DB_HOST: mysql
       DB_USER: root
       DB_PASSWORD: rootpass
-      DB_NAME: flaskdb
+      DB_NAME: my_train_titanic
     depends_on:
       - mysql
     networks:

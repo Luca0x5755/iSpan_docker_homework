@@ -7,6 +7,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -22,7 +24,7 @@ services:
       DB_HOST: mysql
       DB_USER: root
       DB_PASSWORD: rootpass
-      DB_NAME: flaskdb
+      DB_NAME: my_train_titanic
     depends_on:
       - mysql
     volumes:

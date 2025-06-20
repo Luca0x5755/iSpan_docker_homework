@@ -18,32 +18,13 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.route('/api/data/write', methods=['POST'])
-def write_data():
-    data = request.get_json()
-    message = data.get('message')
-    if not message:
-        return jsonify({'error': 'Message is required'}), 400
-
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO messages (message) VALUES (%s)", (message,))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'status': 'success'}), 201
-
-@app.route('/api/data/read', methods=['GET'])
-def read_data():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT id, message, timestamp FROM messages ORDER BY timestamp DESC")
+    cursor.execute("SELECT id, survived, pclass, name, sex, age, sibsp, parch, cabin, ticketId, portId FROM my_train_titanic.passengers LIMIT 30;")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
-    return jsonify(rows)
+    return render_template('index.html', passengers=rows)
 
 
 if __name__ == '__main__':

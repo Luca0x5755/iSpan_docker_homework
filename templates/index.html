@@ -3,44 +3,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Flask MySQL Example</title>
+  <title>titanic</title>
 </head>
 <body>
-  <h1>Message Board</h1>
-  <input type="text" id="messageInput" placeholder="Enter your message" />
-  <button onclick="submitMessage()">Submit</button>
-
-  <h2>Messages</h2>
-  <div id="messages"></div>
-
-  <script>
-    async function submitMessage() {
-      const message = document.getElementById('messageInput').value;
-      if (!message) return alert('Please enter a message.');
-
-      await fetch('/api/data/write', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ message })
-      });
-
-      document.getElementById('messageInput').value = '';
-      loadMessages();
-    }
-
-    async function loadMessages() {
-      const res = await fetch('/api/data/read');
-      const data = await res.json();
-      const container = document.getElementById('messages');
-      container.innerHTML = '';
-      data.forEach(msg => {
-        const p = document.createElement('p');
-        p.textContent = `${msg.timestamp}: ${msg.message}`;
-        container.appendChild(p);
-      });
-    }
-
-    loadMessages();
-  </script>
+  <h2>titanic Data</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Survived</th>
+        <th>Pclass</th>
+        <th>Name</th>
+        <th>sex</th>
+        <th>Age</th>
+        <th>SibSp</th>
+      <tr>
+    </thead>
+    <tbody>
+      {% for passenger in passengers %}
+      <tr>
+        <td>{{ passenger.id }}</td>
+        <td>{{ passenger.survived }}</td>
+        <td>{{ passenger.pclass }}</td>
+        <td>{{ passenger.name }}</td>
+        <td>{{ passenger.sex }}</td>
+        <td>{{ passenger.age }}</td>
+        <td>{{ passenger.sibsp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
 </html>
