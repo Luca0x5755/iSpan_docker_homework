@@ -1,7 +1,26 @@
 # docker 作業 / 大專框架
 
+## 檔案目錄
+
 ```sh
-# 開發模式
+.
+│  .gitignore              # Git 忽略規則
+│  app.py                  # Python Flask 主應用程式
+│  docker-compose.yml      # Docker Compose 開發環境設定
+│  docker-compose.prod.yml # Docker Compose 生產環境設定
+│  Dockerfile              # Docker 映像檔建置設定
+│  generate-cert.sh        # 產生 SSL 憑證的 Shell 腳本
+│  init.sql                # 初始化資料庫 SQL 腳本
+│  README.md               # 專案說明文件
+│  requirements.txt        # Python 相依套件列表
+│
+└─nginx/
+    │  nginx.conf          # NGINX 設定檔
+```
+
+## 開發模式
+
+```sh
 docker-compose up
 ```
 
