@@ -30,16 +30,21 @@ services:
       - "5000:5000"
 
   nginx:
-    build:
-      context: ./nginx
+    image: nginx:alpine
+    # build:
+    #   context: ./nginx
     container_name: nginx
     restart: always
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - flask
     networks:
       - backend
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
   db_data:
