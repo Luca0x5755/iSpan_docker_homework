@@ -28,7 +28,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - D:/iSpan_docker_homework:/app
+      - .:/app
     networks:
       - backend
     ports:

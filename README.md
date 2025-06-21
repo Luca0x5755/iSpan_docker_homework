@@ -24,15 +24,6 @@
 docker-compose up
 ```
 
-## 本地開發需更改路徑，改成專案位置
-
-```yml
-# docker-compose.yml
-  flask:
-    volumes:
-      - D:/iSpan_docker_homework:/app
-```
-
 ## 使用自簽憑證
 
 1. 生產模式使用
