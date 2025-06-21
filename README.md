@@ -40,3 +40,11 @@ source generate-cert.sh
 # 生產模式
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
+
+## Swagger
+
+可以透過以下網址進入 Swagger
+
+```txt
+http://127.0.0.1:5000/apidocs
+```
